@@ -1,0 +1,6 @@
+[database]
+server = "127.0.0.1"
+port = 5000
+user = "admin"
+password = "1234Qwer"
+dbname = "go_db"
