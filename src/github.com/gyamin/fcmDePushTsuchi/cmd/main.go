@@ -9,5 +9,5 @@ import (
 func main() {
 	push.HelloA()
 	con := db.GetConnection()
-	fmt.Println(con.Ping())
+	fmt.Println(con.Stats().OpenConnections)
 }

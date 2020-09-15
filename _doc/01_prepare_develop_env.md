@@ -87,6 +87,16 @@ mod
 
 ## 開発環境
 
+### MySQL(docker)
+```
+$ cd _infra/docker/
+$ docker-compose up -d
+
+$ mysql -h 127.0.0.1 -P 5000 -u root -p
+Enter password: 
+mysql> 
+```
+
 ### GoLandセットアップ
 
 #### GOROOT、GOPATH、Go Modules指定
