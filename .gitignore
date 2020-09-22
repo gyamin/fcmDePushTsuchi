@@ -15,3 +15,6 @@
 # vendor/
 
 /pkg
+.envrc
+.node-version
+./src/.go-version
