@@ -10,14 +10,14 @@ Firebaseを利用してWebPushを実現する。
 ### html
 WebPushであるので、Push受信画面の実装が必要になる。
 実装は大きく以下の通り。
-- Firebase からトークンを取得する  [サンプルhtml](./../web/public/push_test.html)
+- Firebase からトークンを取得する  [サンプルhtml](../firebase/public/push_test.html)
     ```
     messaging.usePublicVapidKey('BID9hBILxxxxx');
     ```
     ![](./img/03-001.png)
     ウェブプッシュ証明書の鍵ペアの値を指定する
     
-- Firebase からトークンを取得する  [サンプルhtml](./../web/public/push_test.html)      
+- Firebase からトークンを取得する  [サンプルhtml](../firebase/public/push_test.html)      
 　ここはサンプルの通り。これでトークンを取得している。本来であれば、取得したトークンをサーバに送信して、送信されたトークンを利用してPUSHを送信する。
     ```js
             // [START get_token]
