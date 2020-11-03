@@ -1,5 +1,8 @@
 const functions = require('firebase-functions');
 
+const admin = require('firebase-admin')
+admin.initializeApp(functions.config().firebase)
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
@@ -50,4 +53,15 @@ exports.letsJanken = functions.https.onRequest(async (req, res) => {
     }
     console.log(message);
     res.json({result: message});
+});
+
+exports.testFirestore = functions.https.onRequest(async (req, res) => {
+    const query = req.query;
+
+    let fireStore = admin.firestore()
+    let fsTokens = fireStore.collection('tokens');
+    fsTokens.doc('123456789').set({
+        token: query.token
+    })
+    res.json({result: 'OK'});
 });

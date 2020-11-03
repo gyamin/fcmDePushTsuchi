@@ -46,3 +46,41 @@ $ curl http://localhost:5001/fcm-de-push/us-central1/letsJanken?hand=gu
 
 :4001ポートにアクセスすると、コンソールを確認できる。（ターミナルにも表示されるけど。）
 ![](./img/04-001.png)
+
+## FunctionsからFirestoreにデータ保存する
+
+[サーバーに Firebase Admin SDK を追加する](https://firebase.google.com/docs/admin/setup?authuser=0)
+
+Functionsで何らかの処理をして、結果をFirestoreに保存することを実現したい。
+どうも Firebase Admin SDK を利用することで実現するらしい。
+
+インストール
+```
+$ pwd
+/fcmDePushTsuchi/firebase
+$ npm init
+$ npm install firebase-admin --save
+```
+
+### 使用例
+
+Functionsで実行する場合
+[例](./../firebase/functions/index.js)
+```javascript
+const admin = require('firebase-admin')
+admin.initializeApp(functions.config().firebase)
+
+exports.testFirestore = functions.https.onRequest(async (req, res) => {
+    const query = req.query;
+
+    let fireStore = admin.firestore()
+    let fsTokens = fireStore.collection('tokens');
+    fsTokens.doc('123456789').set({
+        token: query.token
+    })
+    res.json({result: 'OK'});
+});
+```
+
+上記を実行すると、Firestoreにデータが保持される。
+![](./img/04-002.png)
