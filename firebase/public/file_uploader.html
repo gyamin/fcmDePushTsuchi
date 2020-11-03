@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Storageにファイルをアップロード</title>
+</head>
+<body>
+<h1>Storageにファイルをアップロード</h1>
+
+<div class="select-file">
+    <label>ファイル指定</label>
+    <input type="file" accept="image/png, image/jpeg" name="upload-file" id="upload-file">
+    <img src="" alt="画像プレビュー" class="preview">
+</div>
+<div class="upload-file">
+    <button id="btn-upload-file" style="display: none">アップロード</button>
+</div>
+
+<script src="/__/firebase/7.21.1/firebase-app.js"></script>
+<script src="/__/firebase/7.21.1/firebase-auth.js"></script>
+<script src="/__/firebase/7.21.1/firebase-storage.js"></script>
+<script src="/__/firebase/7.21.1/firebase-firestore.js"></script>
+<script src="/__/firebase/init.js"></script>
+
+<script>
+
+    // ファイル選択時プレビュー表示
+    const uploadFile = document.getElementById('upload-file');
+    uploadFile.addEventListener('change', function(e) {
+        const reader = new FileReader();
+        const file = document.querySelector('input[type=file]').files[0];
+        const preview = document.querySelector('.preview')
+        const uploadButton = document.querySelector('.upload-file button');
+        reader.addEventListener("load", function () {
+            // 画像ファイルを base64 文字列に変換します
+            preview.src = reader.result;
+        }, false);
+        if (file) {
+            reader.readAsDataURL(file);
+            uploadButton.style.display = 'block';
+        }
+    }, false);
+
+    // アップロードボタン処理
+    const btnUploadFile = document.getElementById('btn-upload-file');
+    btnUploadFile.addEventListener('click', function () {
+        const file = document.querySelector('input[type=file]').files[0];
+        let sample1Ref = firebase.storage().ref().child('sample1');
+        sample1Ref.put(file).then(function(snapshot) {
+            console.log('Uploaded a blob or file!');
+        });
+    })
+</script>
+</body>
+</html>
