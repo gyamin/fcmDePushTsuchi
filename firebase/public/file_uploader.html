@@ -45,7 +45,7 @@
     const btnUploadFile = document.getElementById('btn-upload-file');
     btnUploadFile.addEventListener('click', function () {
         const file = document.querySelector('input[type=file]').files[0];
-        let sample1Ref = firebase.storage().ref().child('sample1');
+        let sample1Ref = firebase.storage().ref().child('sample1/test1.png');
         sample1Ref.put(file).then(function(snapshot) {
             console.log('Uploaded a blob or file!');
         });

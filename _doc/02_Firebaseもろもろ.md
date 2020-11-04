@@ -14,7 +14,7 @@ FCM SDK で使用している Service Worker は、HTTPS サイトでのみ利�
 ```
 ってことなので、Https環境でないとダメらしい。ローカルでWebサーバ立てずに、Firebase Hostingを利用する。
 
-## Firebase SDk インストールとセットアップ
+## Firebase SDK インストールとセットアップ
 [Firebase CLI リファレンス](https://firebase.google.com/docs/cli?hl=ja)
 
 インストール
